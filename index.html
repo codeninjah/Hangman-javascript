@@ -10,6 +10,7 @@
 
 <p class="word-output"></p>
 <input type="text" maxlength="1" id="user-guess">
+<button>Start game</button>
 <button>Guess letter</button>
     
     <script>
@@ -17,13 +18,15 @@
 
         const wordsArr = ["alex", "steph", "love", "code"]
         let randomNr = Math.floor((Math.random() * wordsArr.length) + 1) - 1
-        var word = ""
+        var word = wordsArr[randomNr]
 
         const btn = document.getElementsByTagName('button')[0];
+        var btnGuess = document.getElementsByTagName('button')[1]
         var wordOutput = document.getElementsByClassName('word-output')[0];
         var userGuess = document.getElementById('user-guess')
 
         btn.addEventListener('click', testScript)
+        btnGuess.addEventListener('click', guessTheWord)
 
         function testScript(){
             //console.log("Bara test")
@@ -31,25 +34,64 @@
             var word = wordsArr[randomNr]
             var unknown = " - "
             console.log(wordsArr[randomNr])
-            var wordArray = []
+            var wordToArray = []
 
             wordOutput.innerText = " "
             for(var i = 0; i < word.length; i++){
-                wordArray.length = word.length
-                console.log(wordArray.length)
+                wordToArray.length = word.length
+                //console.log(wordToArray.length)
 
                     if(userGuess.value == word[i]){
-                        wordArray.splice(i, 0, word[i])
-                        wordOutput.innerText = wordArray
+                        wordToArray.splice(i, 0, word[i])
+                        wordOutput.innerText = wordToArray
                     }else if(userGuess.value != word[i]){
-                        //word[i] == unknown
-                        //wordOutput.innerText = word[i]
-                        //wordOutput.innerText += unknown
-                        wordArray.splice(i, 0, ' - ')
-                        wordOutput.innerText = wordArray
+                        wordToArray.splice(i, 0, ' - ')
+                        wordOutput.innerText = wordToArray
                         
                     }
             }
+            
+        }
+
+        var wordToArray = []
+        wordToArray.length = word.length
+
+        function guessTheWord(){
+            var theWord
+            var letter
+
+            for(var i = 0; i < word.length; i++){
+                
+                //console.log(wordToArray.length)
+                console.log(wordToArray[i])
+                console.log(word[i])
+
+                    if(userGuess.value === word[i]){
+                        letter = word[i].toString()
+                        //wordToArray[i] = letter
+                        //wordToArray.splice(i, 0, letter)
+                        wordToArray[i] = letter
+                        console.log(typeof letter)
+                        //wordOutput.innerText = letter
+                        //wordOutput.innerText = wordToArray
+                    } 
+                    else if(word[i] !== userGuess.value){
+                        //wordToArray.splice(i, 0, " - ")
+                        //wordOutput.innerText = wordToArray
+                        console.log("Try again")
+                    }
+
+                    /*
+                    if(userGuess.value !== word[i] && typeof word[i] !== "string") {
+                        wordToArray.splice(i, 0, ' - ')
+                        //wordOutput.innerText = wordToArray
+                    }
+                    */
+
+                    wordOutput.innerText = wordToArray
+
+            }
+            
             
         }
 
