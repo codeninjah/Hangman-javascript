@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<p class="word-output"></p>
+<input type="text" maxlength="1" id="user-guess">
+<button>Guess letter</button>
+    
+    <script>
+        console.log("Hello world!")
+
+        const wordsArr = ["alex", "steph", "love", "code"]
+        let randomNr = Math.floor((Math.random() * wordsArr.length) + 1) - 1
+        var word = ""
+
+        const btn = document.getElementsByTagName('button')[0];
+        var wordOutput = document.getElementsByClassName('word-output')[0];
+        var userGuess = document.getElementById('user-guess')
+
+        btn.addEventListener('click', testScript)
+
+        function testScript(){
+            //console.log("Bara test")
+            randomNr = Math.floor((Math.random() * wordsArr.length) + 1) - 1
+            var word = wordsArr[randomNr]
+            var unknown = " - "
+            console.log(wordsArr[randomNr])
+            var wordArray = []
+
+            wordOutput.innerText = " "
+            for(var i = 0; i < word.length; i++){
+                wordArray.length = word.length
+                console.log(wordArray.length)
+
+                    if(userGuess.value == word[i]){
+                        wordArray.splice(i, 0, word[i])
+                        wordOutput.innerText = wordArray
+                    }else if(userGuess.value != word[i]){
+                        //word[i] == unknown
+                        //wordOutput.innerText = word[i]
+                        //wordOutput.innerText += unknown
+                        wordArray.splice(i, 0, ' - ')
+                        wordOutput.innerText = wordArray
+                        
+                    }
+            }
+            
+        }
+
+    </script>
+</body>
+</html>
