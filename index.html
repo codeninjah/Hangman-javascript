@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hangman</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <p class="word-output"></p>
+<p class="guesses"></p>
 <input type="text" maxlength="1" id="user-guess">
 <button>Start game</button>
 <button>Guess letter</button>
@@ -21,23 +23,25 @@
         var word = wordsArr[randomNr]
 
         const btn = document.getElementsByTagName('button')[0];
-        var btnGuess = document.getElementsByTagName('button')[1]
+        var btnGuess = document.getElementsByTagName('button')[1];
         var wordOutput = document.getElementsByClassName('word-output')[0];
-        var userGuess = document.getElementById('user-guess')
+        var userGuess = document.getElementById('user-guess');
+        var guessesP = document.getElementsByClassName('guesses')[0];
+        let guesses = 5
 
         btn.addEventListener('click', startGame)
         btnGuess.addEventListener('click', guessTheWord)
 
+
         function startGame(){
-            //console.log("Bara test")
-            //randomNr = Math.floor((Math.random() * wordsArr.length))
-            //var word = wordsArr[randomNr]
             console.log(word)
             wordOutput.innerText = " "         
         }
 
+
         var wordToArray = []
         wordToArray.length = word.length
+
 
         function guessTheWord(){
             var theWord
@@ -49,9 +53,11 @@
                         letter = word[i].toString()
                         wordToArray[i] = letter
                     }
-
-                    wordOutput.innerText = wordToArray
+                    
+                    //guessesP.innerText = "Nr of guesses left: " + guesses
             }
+            wordOutput.innerText = wordToArray
+            guessesP.innerText = "Nr of guesses left: " + guesses
             
             
         }

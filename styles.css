@@ -1,0 +1,7 @@
+.word-output {
+    border: 1px solid red;
+    min-height: 50px;
+    font-size: 36px;
+    width: 200px;
+    text-align: center;
+}
